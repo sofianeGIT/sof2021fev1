@@ -16,7 +16,16 @@ the course site :   https://www.tutorialspoint.com/git/index.htm
 -All of these are referred to in git-speak as “remotes”, and all are completely optional. 
 -You do not need to use a remote to use git, but it will make sharing your code with others easier.
 
--The first two things you'll want to do are install git and create a free GitHub account.
+-The first two things you'll want to do are install git and create a free GitHub account :
+      git config --global user.name "sofiane"
+      git config --global user.email "aeraqua14@yahoo.fr"
+
+      git init
+      git add page.html                            => git add .           => all the files ( the modified and the not modified) will be put in the stagging area.
+                                                   => git add --all       => all the files ( only the modified files)           will be put in the stagging area.
+
+      git commit --m " add hello world to page "
+
 
 -version control system
 
