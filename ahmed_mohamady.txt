@@ -1,0 +1,274 @@
+
+
+#). Git and GitHub :
+
+
+
+          .A quick aside: git and GitHub are not the same thing. 
+
+          -Git is an open-source, version control tool created in 2005 by developers working on the Linux operating system; 
+          -GitHub is a company founded in 2008 that makes tools which integrate with git. 
+
+          -You do not need GitHub to use git, but you cannot use GitHub without using git. 
+          -There are many other alternatives to GitHub, such as GitLab, BitBucket, and “host-your-own” solutions such as gogs and gittea. 
+          -All of these are referred to in git-speak as “remotes”, and all are completely optional. 
+          -You do not need to use a remote to use git, but it will make sharing your code with others easier.
+
+
+
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+
+1). git :
+      
+
+
+
+      git config --global user.name  "sofiane"
+      git config --global user.email "aeraqua14@yahoo.fr"
+
+      git init                                     => create repository
+      git add page.html                            => only the         file page.html                             will be put in the stagging area.
+      git add .                                    => all the          files ( the modified and the not modified) will be put in the stagging area.
+      git add --all                                => all the modified files ( only the modified files)           will be put in the stagging area.
+
+      git commit --m " add hello world to page "  => from the staging area to the repository, with a message as a reminder and for organisation.
+                                                  => staging = indexing.
+      
+      ls                                          => to show the files and folders                  (folder = directory)
+
+      cd mydirectory    then (in mydirectory): ls  => to see what is in mydirectory   or use :  ls mydirectory
+
+      cd -                                         => to go back to the parent directory      
+
+      clear                                        => to erase the current screen
+
+      git log                                      => to show all the commit in the repository, and each commit with its sha and its message. (when in repository)
+      
+      git log --since="2021-2-5"                   => show the log by date
+      
+      git log --untill="2021-2-5"
+      
+      git log --author "sofiane2"                  => show the log by author
+      
+      git log --7firstCHAR..7firstCHAR             => oldest(down), then newest(top) =>the 7 first characters of the sha,corresponding to each modification of the file
+     
+      git log --state                              => more detailed
+      
+      git log --format=short                       => short display of the just above command.
+      
+      git log --oneline                            => to show all the commit in the repository, and each commit with its 7 first characters of sha and the --m message                                                         (shorter way)   (when in repository)
+      git log --graph --oneline --all --decorate   => in one line, for branchs, all branchs, use colors to distinguish                                           
+      
+      exit the log display                         => to exit log => press q in the keyboard
+
+      git log --oneline -3                         => shows the 3 last commit that are in the top of the displayed table 
+      
+      git branch                                   => shows what branch you are in, and how many branches there is.
+      
+      git branch b2                                => create the branch b2  => but when using git branch just above => you will see that you still are in master branch
+                                                                                                                    => and the branch b2 is also shown.
+      cat .git/HEAD                                => ref: refs/heads/master   (reference)
+      
+      ls -la .git/refs/heads                       => another way to show what branch(es) we have,and the 7firstCharacters of the last commit in each branch shown too
+                                                   => each branch has its own repository?
+      
+      git checkout b2                              => to swith from master branch to b2 branch
+                                                   => and the last commit of the file (so, the last modification in the file) is copied to the b2 branch, and we start                                                         working from that commit in the b2 branch.                                                      
+                                                   => and now, you are in b2 branch, you modify the file, use add then use commit, (you are in the repository of                                                               branch b2 of the file which is different from the repository of the master branch of the file).                        git merge myb                                => to make the master branch and the myb branch (that I modified the file in it) as a one branch.                                                                              => to use that command, I must 1st switch from myb branch to the master branch through: git checkout master                                    
+      git --no --ff mybr                           =>
+ 
+      git diff master..b2                          => shows the difference between the 2 branches.                  
+      
+      git branch -m b2 b1                          => change the branch name from b2 to b1.
+      
+      git branch -D b1                             => delete the branch b1.      D : capital.
+      
+      git checkout -b b01                          => create branch b01 and switch to branch b01 at the same time.
+
+      git status                                   => reminds you to do add to a modified or created file,                     so that it will be in the stagging area. 
+                                                      reminds you to do commit to a                  file in the stagging area,so that it will be in the repository.
+      
+      git diff                                     => shows exactly what is about git status, (with: --- if removing from the file , and: +++ if adding to the file.)
+                                                      but looks only in the file when it is in the working area, not when it is in the stagging area.
+                                                      
+                                                          so, after doing: git add page.html => git diff =>   will not show anything
+                                                          after doing: git commit --m" " => git diff =>   will not show anything either (in the repository)
+                                                          to check the file when it is put in the repository, use git log, as shown up above.
+
+      git diff --staged                            => same as the just above, but looks in the file when it is in the stagging area.
+                                                      so, after doing: git add page.html => git diff --staged  =>   will     show the git diff
+                                                          after doing: git commit --m" " => git diff --staged =>    will not show anything either (in the repository)
+                                                          to check the file when it is put in the repository, use git log, as shown up above.
+
+
+     remove a file                                => if the file is only in working directory (neither add used to go to the staging area, nor commit used to go to                                                           the repository) => click right on the file to remove it => but remains in the trash.
+
+      
+     git rm page2.html                            =>  removing the file (does not remain in the trash, and remains in the system) => after using add and commit. 
+                                                      so, only when the file is in the repository.
+
+     git commit -m "file deleted"                 =>  removing the file difinetly(does not remain neither in trash, nor in the system) => after using add and commit                                                          so, only when the file is in the repository.  =>   must come right after the just above command ?
+
+     
+     git rm -f  page2.html                        =>  removing the file (does not remain in the trash) => but after using add.
+                                                      so, only when the file is in the staging area.
+
+
+     rename a file (bad way)                      => if you rename it by the right click, git will consider the old name as an old deleted file
+                                                                                          and will consider the new name as a new created file.   
+                                                                                          (shown through: git status, and this is bad)     
+     
+     rename a file (correct way)                  =>       use : add then commit -m" "            to put the file in the repository.
+                                                      then use : git rm oldfilename.html ,  then use : git add newfilename,    then use: git commit --m "file renamed" 
+
+     rename a file (best way)                     => git mv oldfilename newfilename ,then : git commit -m "rename file"
+
+     
+     git checkout "myfile.html"                   => used in working directory => to undo a previous editing to the file. 
+                                                                               => works when deleting or changing or adding in the file. 
+                                                     
+
+     git reset HEAD myfile.html                   to unstage => in the staging area => before sending the file to repository, you want to rectify a modification in the                                                                  file.
+                                                             => unstage the file by using the curent command (send it back to the working area to remodify                                                                              in it).
+                                                             => then, rectify the changes in the file, then stage and commit the file again.
+            
+     git commit --amend -m"the rectified massage" => I want to rectify a commit(I can rectify only the last commit) => rectify a commit means rectify the file content                                                       and/or rectify the message in --m" ".
+
+     *). go back to a certain code of the file, rectify that code but without deleting the subsequent( newest modification(s) ) codes of the file.
+     
+           git checkout 7fistCHARACTERS of sha -- mypage.html , then : git commit --m "the new message"
+            
+                 
+             
+             in repository =>     I have a single file with many modification(many codes), and I want to go back to an old code of that file.
+                           => so, I have a single file with many 7fistCHARACTERS of sha, coresponding to many --m" " messages, shown in a table. 
+                           => this table is checked through:  git log --oneline 
+              
+              =>     i like to go back to a certain step of the file, that a cetain modification to it was made.    =>   i check the table =>      git log --oneline                  =>     that step and that modification has its corresponding 7fistCHARACTERS of sha and its coresponding --m" " message.                                  
+              =>     these 7fistCHARACTERS are used in our above command.
+
+              =>     the file in that situation of code is put directly in working area. I modify it there, and then, use: add, then: commit --m" " again.
+                     the subsequent(newest) codes of the file will not be deleted.
+
+       *). reset sha => go back to a certain code of the file, rectify that code and delete the subsequent code(s) of the file with 1 of the 3 ways. 
+                        we have 3 ways:
+
+              git reset --soft 7fistCHARACTERSofSHA => you go to the chosen situation of code of the file through the 7fistCHARACTERSofSHA
+                                                    => by using the current command, the file with that chosen situation of code is put in staging area, 
+                                                    => the head pointer points to the subsequent (newest commit)
+                                                        and you take back manually that file in that situation of code to working directory, by unstaging ?
+                                      
+              git reset --mixed 7fistCHARACTERSofSHA     or    git reset 7fistCHARACTERSofSHA  (it is the default)
+                                                
+                                                    => you go to the chosen situation of code of the file through the 7fistCHARACTERSofSHA                                                                                  => by using the current command, the file with that chosen situation of code is unstaged, 
+                                                        that file in that situation of code is taken back directly to working directory.
+
+              git reset --hard 7fistCHARACTERSofSHA        => you go to the chosen code of the file through the 7fistCHARACTERSofSHA   
+                                                           => the file with that situation of code is put in working directory and in staging area
+
+                                                           => the newest situation of code of that file are deleted, so, noway to go back to those situations.
+                                                           => reset --hard is not recommended
+
+
+
+
+              touch myfile.txt                             => to create a file   => and the file is shown by the :  git status command
+              
+              git clean -n                                 => if used right after a creation of file or modification in a file, the changing will not be in git status
+                                                           => so, changing will not be tracked.
+                                   
+
+*). branch : .all commit corresponding to modifications in the file are in the master branch.(so, all what we have seen previously was in the master branch)
+             .master branch => commit1 -> commit2 -> commit3 -> ... -> etc.
+             
+             .I want to modify in the file but without affecting what other co-workers have: 
+                => so, the only possibilty I have is to start from the last commit in the master branch, and copy that last commit to other(s) branch(s)  =>
+                =>     by using:   git checkout b2
+                => now, I am in working directory of mybranch branch. 
+                => and after modification(s) in working directory, then add, then commit -m " " =>
+                => the file will be in a totally different repository
+
+             .master branch is shared by all co-workers.
+             
+             .I switch to another branch => that other branch is for only me => I work in it to not mess-up the shared master branch => 
+                                         => than I merge the mybr branch and the master branch to make them a one branch =>   git merge mybranch
+                                         => to use that command, I must have been switched from mybr branch to the master branch first, through: git checkout mybr
+
+             .It cannot be a modification in the master branch and my own branch at the same time => otherwise, there will be a conflict problematic when merging.
+
+             .merging branches problematic => modifying in my own branch myb, and modifying in the master branch at the same time. => there will be conflict.
+                                           => the conflict is seen in the file => through the text editor(Ex: visual studio or notepade++)
+                                           => git status command will inform me more about the conflict
+
+             .solution => now, that I am informed about the merging branch conflict => conflict seen in the file through the text editor(Ex:visual code or notepad++)
+                       => redo and correct the modification(s) in the file through the text editor, then: add, then: commit -m" "
+                       => no need to use git merge myb again.                          
+
+
+
+
+
+
+git branch                                   => shows what branch you are in, and how many branches there is.
+
+git branch b2                                => create the branch b2  => but when using git branch just above => you will see that you still are in master branch
+                                                                      => and the branch b2 is also shown.
+
+cat .git/HEAD                                => ref: refs/heads/master   (reference)
+      
+ls -la .git/refs/heads                       => another way to show what branch(es) we have, , and the 7firstCharacters of the last commit in each branch shown too
+                                             => each branch has its own repository?     
+
+git checkout b2                              => to swith from master branch to b2 branch
+                                             => and the last commit of the file (so, the last modification in the file) is copied to the b2 branch
+                                                 (in the working directory), and we start working from that commit in the b2 branch.
+                                             => and now, you are in b2 branch, you modify the file(in the working directory of b2), 
+                                                 then use add, then use commit, (you are in the repository of branch b2 of the file which is different from the                                                           repository of the master branch of the file).
+
+
+git merge myb                                => to make the master branch and the myb branch (that I modified the file in it) as a one branch.                                                                       => to use that command, I must 1st switch from myb branch to the master branch through:  git checkout master                                    
+git --no --ff mybr                           =>
+
+
+git diff master..b2                          => shows the difference between the 2 branches. 
+
+git branch -m b2 b1                          => change the branch name from b2 to b1.
+
+git branch -D b1                             => delete the branch b1.   D : capital.
+
+git checkout -b b01                          => create branch b01 and switch to that branch b01 at the same time.
+
+
+#). Head Pointer in Git :  => head pointing to sha1 (of commit1), then to sha2 (of commit2), then to sha3 (of commit3),  ...etc.    => sha in hexadecimal.
+
+         head -> (sha1) = { commit1, tree: null,        author : sofiane, committer : sofiane, message }   => tree: null because no commit before => so, no sha before
+
+         head -> (sha2) = { commit2, tree: 7firstOFsh1, author : sofiane, committer : sofiane, message }   =>    sha2 = 7 first characters of sha1
+
+         head -> (sha3) = { commit3, tree: 7firstOFsh2, author : sofiane, committer : sofiane, message }   =>    sha3 = 7 first characters of sha2
+          .
+          .
+          etc.
+
+
+&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+
+
+
+
+2). github :
+
+                                       github:   sofianeGIT ==>   usename                                                      hadaANAGIT20  ==>   psswrd
+
+go to =>   https://github.com/
+           
+do    =>   git remote add origin https://github.com/sofianeGIT/sof2021fev1.git    =>   do that in the cmd line (username: sofianeGIT, repository created: sof2021fev1 )
+           
+           where: origin =>   is the alias of  https://github.com/sofianeGIT/sof2021fev1.git.  =>    this alias can be changed.
+
+then =>    git push -u origin master  => and by that, the directory with its sub-directories and files inside are pushed to the github.
